@@ -48,7 +48,18 @@
 	function profilAction()
 	{
 		$menu = 'profil';
-		include_once('../vue/changementmdpForm.html.php'); 
+
+		if(isset($_GET['auteur'])){
+			$idTab = getId($_GET['auteur']);
+			$idMembre = $idTab['id'];
+		}
+		else{
+			$idMembre = $_SESSION['id'];
+		}
+
+		$profil = voirProfil($idMembre);
+
+		include_once('../vue/profil.html.php'); 
 	}
 
 	function changementMdpAction()
