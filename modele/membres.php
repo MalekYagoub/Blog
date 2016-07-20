@@ -1,5 +1,43 @@
 <?php
 
+	function getId($pseudo){
+		$bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+		$req = $bdd->prepare('SELECT id FROM membres WHERE pseudo=:pseudo');
+
+		$req->execute(array(
+			'pseudo' => $pseudo
+		));
+
+		return $req->fetch(PDO::FETCH_ASSOC);
+
+	}
+
+	function voirProfil($idMembre)
+	{
+		$bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+		$req = $bdd->prepare('SELECT * FROM membres WHERE id=:id');
+
+		$req->execute(array(
+			'id' => $idMembre
+		));
+
+		return $req->fetch(PDO::FETCH_ASSOC);
+	}
+
+	function changerProfil($dateNaissance, $passions, $ville, $idMembre)
+	{
+		$bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+		$req = $bdd->prepare('UPDATE membres SET date_naissance=:dateNaissance, passions=:passions, nom_ville=:ville WHERE id=:id');
+		
+		$req->execute(array(
+			'dateNaissance' => $dateNaissance,
+			'passions' => $passions,
+			'ville' => $ville,
+			'id' => $idMembre
+		));
+
+	}
+
 	function changerStatut($statut, $idMembre){
 
 		$bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));

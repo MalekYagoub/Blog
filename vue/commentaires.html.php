@@ -47,7 +47,7 @@
 			<h1>Commentaires</h1>
 
 			<?php foreach($commentaires as $key => $commentaire): ?>
-				<p> <?php echo $commentaire['auteur']; ?>
+				<p> <a href="../controleur/membre.php?action=profil&amp;auteur=<?php echo $commentaire['auteur']; ?>"><?php echo $commentaire['auteur']; ?></a>
 					<?php echo 'le ' . date('d/m/Y à H:i:s', strtotime($commentaire['date_commentaire'])); ?> 
 					<?php if(isset($_SESSION['statut']) && $_SESSION['statut'] == 1):?>
 						<a href="../controleur/commentaire.php?idCommentaire=<?php echo $commentaire['id']; ?>&amp;action=supprimer&amp;idBillet=<?php echo $idBillet ?>">Supprimer</a>
