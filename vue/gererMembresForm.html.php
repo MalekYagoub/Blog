@@ -40,6 +40,7 @@
 					 		<select name="statut" id="statut">
 					 			<option value="membre">Membre</option>
 					 			<option value="admin">Admin</option>
+					 			<option value="bannir">Bannir</option>
 					 		</select>
 					 		<input type="submit" name="Valider">
 					 	</form>
